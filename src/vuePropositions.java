@@ -8,8 +8,8 @@ public class vuePropositions extends Canvas{
 		Dimension dimension=new Dimension(200, 200);
 		this.setPreferredSize(dimension);
 		
-		for (int i=0;i<4;i++) {
-			Rangee r=new Rangee(2);
+		for (int i=0;i<Modele.N_TENTATIVES; i++) {
+			Rangee r=new Rangee(Modele.DIFFICULTE);
 			
 		}
 	}

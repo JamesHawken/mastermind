@@ -5,7 +5,8 @@ public class Mastermind extends Frame {
 	public static void main(String args[]) {
 		
 			vueClavier vc= new vueClavier();
-
+			vuePropositions vp= new vuePropositions();
+			
 	}
-	public
+
 }

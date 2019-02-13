@@ -6,7 +6,7 @@ public class Rangee {
 	int taille, indiceJeton;
 	Color[] resultat;
 	
-	public Rangee(int diff){
+	public Rangee(int diff) {
 		
 		this.taille = diff;
 		this.indiceJeton = 0;
@@ -14,31 +14,57 @@ public class Rangee {
 		this.resultat = new Color[diff];
 	}
 	
-	public void equals(Rangee r){
+	public void equals(Rangee r) {
 		
-		//Premier passage pour determiner les pions bien places
+		//First loop to determine which color tokens are correctly placed.
 		for(int i = 0; i<this.taille; i++){
 			if(this.rangee[i] == r.rangee[i]) this.resultat[i] = Color.black;
 		}
 		
- 		//Deuxième passage pour determiner les pions presents mais mal places
-		for(int i = 0; i<this.taille; i++){
+ 		//Second loop to seek out misplaced tokens.
+		int[] alreadyFound = new int[4];
+		for(int i = 0; i<this.taille; i++) {
 			if(this.resultat[i] == Color.black) continue;
 			for(int j = 0; j<r.taille; j++){
-				if(this.rangee[i] == r.rangee[j] && !this.resultat[j].equals(null)){
+				if(this.rangee[i] == r.rangee[j] && this.resultat[j]==null && alreadyFound[j]==0) {
 					this.resultat[i] = Color.white;
+					alreadyFound[j] = 1;
+					break;
 				}
 			}
-		} 
+		}
+		
+		/*Sorting out the resulting array for display convenience. Using the all mighty
+		 * Dutchland's flag algorithm. 
+		 */
+		int n = 0, b = 0, nl = this.taille-1;
+		Color t;
+		while(nl >= b) {
+			if(this.resultat[b] == Color.white) b++;
+			else if(this.resultat[b] == Color.black) {
+				t = this.resultat[n]; 
+				this.resultat[n] = this.resultat[b]; 
+				this.resultat[b] = t;
+				n++; b++;
+			} else {
+				t = this.resultat[b]; 
+				this.resultat[b] = this.resultat[nl]; 
+				this.resultat[nl] = t;
+				nl--;
+			}
+		}
 	}
 	
-	public boolean estCorrecte(){
+	public boolean estCorrecte() {
 		
 		int k = 0;
-		while(this.resultat[k] == Color.black){
-			k++;
-		}
-		if(k == this.taille) return true;
-		return false;
+		while(this.resultat[k] == Color.black) k++;
+		return k == this.taille;
+	}
+
+	public void ajouterJeton(Color c) {
+		
+		this.rangee[indiceJeton] = c;
+		indiceJeton++;
 	}
 }

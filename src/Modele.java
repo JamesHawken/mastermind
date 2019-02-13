@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Modele {
 	
-	Color[] COULEURS = {Color.yellow, Color.green, Color.blue, Color.magenta, Color.red, Color.orange, Color.white, Color.black};
+	static Color[] COULEURS = {Color.yellow, Color.green, Color.blue, Color.magenta, Color.red, Color.orange, Color.white, Color.black};
 	int N_TENTATIVES, DIFFICULTE;
 	enum Etat {EN_COURS, GAGNE, PERDU};
 	

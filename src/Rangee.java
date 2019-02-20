@@ -35,7 +35,7 @@ public class Rangee {
 		}
 		
 		/*Sorting out the resulting array for display convenience. Using the all mighty
-		 * Dutchland's flag algorithm. 
+		 * Dutch flag algorithm. 
 		 */
 		int n = 0, b = 0, nl = this.taille-1;
 		Color t;

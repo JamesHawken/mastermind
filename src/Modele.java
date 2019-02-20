@@ -59,6 +59,10 @@ public class Modele extends Observable {
 	}
 	
 	public void etatCourant(){
+		if(this.etat == Modele.Etat.GAGNE || this.etat == Modele.Etat.PERDU) {
+			this.setChanged();
+			this.notifyObservers(Modele.Etat.PERDU);
+		}
 		
 		if(!this.etat.equals(Modele.Etat.GAGNE)){
 			if(this.tentative < Modele.N_TENTATIVES) this.etat = Etat.EN_COURS;

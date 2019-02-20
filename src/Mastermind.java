@@ -6,14 +6,15 @@ import java.awt.event.WindowListener;
 @SuppressWarnings("serial")
 public class Mastermind extends Frame implements WindowListener {
 	
-	public Mastermind() {
+	public Mastermind(){
 		
 		Modele modele = new Modele();
 		vuePropositions vp = new vuePropositions(modele.propositions);
-		Controleur ctrl = new Controleur(modele, vp);
-		vueClavier vc= new vueClavier(modele, ctrl);
+		Controleur ctrl = new Controleur(modele, vp, this);
+		vueClavier vc= new vueClavier(modele, ctrl, this);
 		
 		modele.addObserver(vc);
+		vc.addContainerListener(ctrl);
 		this.setLayout(new BorderLayout());
 		this.add(vc, BorderLayout.SOUTH);
 		this.add(vp, BorderLayout.NORTH);

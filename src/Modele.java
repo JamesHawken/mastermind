@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Random;
 
@@ -33,6 +34,7 @@ public class Modele extends Observable {
 		for(int k = 0; k<Modele.N_TENTATIVES; k++) {
 			this.propositions[k] = new Rangee(Modele.DIFFICULTE);
 		}
+		System.out.println(Arrays.toString(this.combinaison.rangee));
 	}
 	
 	/*public Modele(int diff, int tentatives){
@@ -58,8 +60,11 @@ public class Modele extends Observable {
 	
 	public void etatCourant(){
 		
-		if(this.tentative < Modele.N_TENTATIVES) this.etat = Etat.EN_COURS;
-		if(this.tentative > Modele.N_TENTATIVES) this.etat = Etat.PERDU;
+		if(!this.etat.equals(Modele.Etat.GAGNE)){
+			if(this.tentative < Modele.N_TENTATIVES) this.etat = Etat.EN_COURS;
+			if(this.tentative == Modele.N_TENTATIVES) this.etat = Etat.PERDU;
+		}
+		System.out.println(this.etat);
 		this.setChanged();
 		this.notifyObservers(this.etat);
 	}

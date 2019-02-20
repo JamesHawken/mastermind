@@ -13,7 +13,7 @@ public class Mastermind extends Frame implements WindowListener {
 		Controleur ctrl = new Controleur(modele, vp);
 		vueClavier vc= new vueClavier(modele, ctrl);
 		
-		
+		modele.addObserver(vc);
 		this.setLayout(new BorderLayout());
 		this.add(vc, BorderLayout.SOUTH);
 		this.add(vp, BorderLayout.NORTH);

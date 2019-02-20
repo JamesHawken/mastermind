@@ -58,8 +58,10 @@ public class Rangee {
 	public boolean estCorrecte() {
 		
 		int k = 0;
-		while(this.resultat[k] == Color.black) k++;
-		return k == this.taille;
+		while(this.resultat[k] == Color.black && k<3) {
+			k++;
+		}
+		return k == this.taille-1;
 	}
 
 	public void ajouterJeton(Color c) {
